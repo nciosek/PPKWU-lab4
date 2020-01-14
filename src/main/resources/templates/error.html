@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Generator v-card pracowników Politechniki Lodzkiej</title>
+    <title>Generator v-card pracowników Politechniki Łódzkiej</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .hidden {
+            display: none
+        }
+    </style>
+    <script>
+        function onSearchInit(ev) {
+            var hiddenElements = document.getElementsByClassName("hidden")
+            for (var i = 0; i < hiddenElements.length; i++) {
+                hiddenElements[i].classList.remove("hidden")
+            }
+        }
+    </script>
 </head>
 <body>
-
+<div class="section">
+    <div class="container">
+        <form th:replace="fragments/searchform.html :: searchform"></form>
+        <div class="row">
+            <div class="col s12 m4 center-align">
+                <div class="card-panel red darken-2 white-text">
+                    <strong>Wystąpił błąd: <span th:text="${exceptionType}"></span>: <span th:text="${exception.message}"></span></strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
